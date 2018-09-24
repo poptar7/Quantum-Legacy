@@ -1,9 +1,9 @@
 
-ipElastic = '0.0.0.0'
+ipElastic = 'elasticsearch'
 portElastic = 9200
 
-ipBroker = '0.0.0.0'
+ipBroker = 'hpfeeds'
 portBroker = 20000
 ident = 'main'
 secret = 'verysecret'
-channels = ['cowrie']
+channels = 'cowrie'
