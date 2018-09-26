@@ -1,6 +1,8 @@
-FROM python:3.7.0-alpine3.8
+FROM python:3.6.6-alpine3.8
 
 COPY subber /opt/subber
 RUN pip3 install -r /opt/subber/requirements.txt
 
-CMD ["python3 /opt/subber/feedSub.py"]
+WORKDIR /opt/subber
+
+CMD python3 feedSub.py

@@ -2,7 +2,7 @@
 ipElastic = 'elasticsearch'
 portElastic = 9200
 
-ipBroker = 'hpfeeds'
+ipBroker = 'hpfeeds3'
 portBroker = 20000
 ident = 'main'
 secret = 'verysecret'
