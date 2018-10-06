@@ -17,6 +17,18 @@ services:
     networks:
       - quantumlegacy
 
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "0.0.0.0:443:443"
+    volumes:
+      - ./nginx/ssl:/opt/nginx/ssl
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/webothingo:/etc/nginx/sites-enabled/webothingo
+    networks:
+      - quantumlegacy
+
   elasticsearch:
     build:
       context: docker-elk/elasticsearch/
@@ -43,6 +55,7 @@ services:
       - ./docker-elk/logstash/pipeline:/usr/share/logstash/pipeline:ro
     ports:
       - "5000:5000"
+      - "5044:5044"
       - "9600:9600"
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"

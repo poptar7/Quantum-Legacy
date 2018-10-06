@@ -1,0 +1,10 @@
+filebeat.inputs:
+  - type: log
+  enabled: true
+  paths:
+    - /data/cowrie/log/cowrie.json
+
+output.logstash:
+  enabled: true
+  hosts: [""]
+  index: "cowrie"
