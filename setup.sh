@@ -24,21 +24,25 @@ chmod 777 storage/elasticsearch
 
 echo chmod 777 hopefully ran on the elasticsearch directory
 
-echo Now for a question or two for you.
-echo Do you want to use certbot or self signed certs (c/s)
-read input
-if [ $input == "c" ]; then
-    echo What domain is your server running on?
-    read input
-    apt-get install -y software-properties-common
-    add-apt-repository -y ppa:certbot/certbot
-    apt-get update -y
-    apt-get install -y certbot
-    certbot certonly --standalone --cert-name server_certs -n -d $input
-    cp /etc/letsencrypt/live/server_certs/fullchain.pem ./nginx/ssl/fullchain.pem
-    cp /etc/letsencrypt/live/server_certs/cert.pem ./nginx/ssl/cert.pem
-elif [ $input == "s" ]; then
-    openssl req -x509 -nodes -new -batch -keyout nginx/ssl/server.key -out nginx/ssl/server.crt
-else
-    echo Must use c or s for certbot or self signed.
-fi
+
+
+#  RE ADD when needed
+
+#echo Now for a question or two for you.
+#echo Do you want to use certbot or self signed certs (c/s)
+#read input
+#if [ $input == "c" ]; then
+#    echo What domain is your server running on?
+#    read input
+#    apt-get install -y software-properties-common
+#    add-apt-repository -y ppa:certbot/certbot
+#    apt-get update -y
+#    apt-get install -y certbot
+#    certbot certonly --standalone --cert-name server_certs -n -d $input
+#    cp /etc/letsencrypt/live/server_certs/fullchain.pem ./nginx/ssl/fullchain.pem
+#    cp /etc/letsencrypt/live/server_certs/cert.pem ./nginx/ssl/cert.pem
+#elif [ $input == "s" ]; then
+#    openssl req -x509 -nodes -new -batch -keyout nginx/ssl/server.key -out nginx/ssl/server.crt
+#else
+#    echo Must use c or s for certbot or self signed.
+#fi

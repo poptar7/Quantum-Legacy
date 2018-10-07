@@ -4,7 +4,9 @@ filebeat.inputs:
   paths:
     - /data/cowrie/log/cowrie.json
 
+name: cowrie
+tags: ['${COWRIE_VERSION:None}']
+
 output.logstash:
   enabled: true
   hosts: [""]
-  index: "cowrie"
