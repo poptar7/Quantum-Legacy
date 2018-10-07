@@ -1,3 +1,0 @@
-hpfeeds3
-asyncio
-elasticsearch
