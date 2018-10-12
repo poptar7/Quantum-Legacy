@@ -1,33 +1,19 @@
 version: '3'
 
 services:
-  hpfeedssub:
-    build: hpfeedsSub/
-    container_name: hpfeedsSub
-    networks:
-      - quantumlegacy
 
-  hpfeeds:
-    image: jc2k/hpfeeds3-broker
-    container_name: hpfeeds3
-    ports:
-      - "0.0.0.0:20000:20000"
-    volumes:
-      - ./hpfeeds3/broker:/app/var
-    networks:
-      - quantumlegacy
-
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    ports:
-      - "0.0.0.0:443:443"
-    volumes:
-      - ./nginx/ssl:/opt/nginx/ssl
-      - ./nginx/logs:/var/log/nginx
-      - ./nginx/webothingo:/etc/nginx/sites-enabled/webothingo
-    networks:
-      - quantumlegacy
+# Might need this again at some point
+#  nginx:
+#    image: nginx:latest
+#    container_name: nginx
+#    ports:
+#      - "0.0.0.0:443:443"
+#    volumes:
+#      - ./nginx/ssl:/opt/nginx/ssl
+#      - ./nginx/logs:/var/log/nginx
+#      - ./nginx/webothingo:/etc/nginx/sites-enabled/webothingo
+#    networks:
+#      - quantumlegacy
 
   elasticsearch:
     build:

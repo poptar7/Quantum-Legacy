@@ -1,8 +1,14 @@
 filebeat.inputs:
-  - type: log
+- type: log
   enabled: true
   paths:
-    - /data/cowrie/log/cowrie.json
+    - /opt/cowrie/data/cowrie/log/cowrie.json
+  json.keys_under_root: false
+  json.add_err_key: true
+
+filebeat.config.modules:
+  path: ${path.coonfig}/modules.d/*.yml
+  reload.enabled: false
 
 name: cowrie
 tags: ['${COWRIE_VERSION:None}']
