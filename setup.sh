@@ -14,11 +14,12 @@ echo Hopefully docker is actually installed.
 echo If its not then just run 'sh get-docker.sh'.
 
 # Should maybe check for a new version every so often...
-curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+if [ ! -d /usr/local/bin/docker-compose ]; then
+    curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+fi
 
 echo Hopefully docker-compose is now installed
-# I know there is a way to check if the command exists should add that at some point
 
 chmod 777 storage/elasticsearch
 

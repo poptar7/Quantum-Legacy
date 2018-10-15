@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  cowrie:
+    build: .
+    volumes:
+      - ./cowrie/etc:/opt/cowrie/etc
+      - ./cowrie/var:/opt/cowrie/var
+    ports:
+      - "22:22"
+      - "23:23"

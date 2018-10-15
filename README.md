@@ -2,19 +2,8 @@
 ### A C2 server for Honeypots. 
 
 
-reminder make the database for users
+What is the point of a honeypot, of logs at all if you can't easily view them? You can get all the awesome samples in the world but its not helping you if you can’t access them.
+Thats where Quantum Legacy comes in.
+Quantum Legacy centralizes all of the data that honeypots capture. It takes the deployment, management, and updating of those honeypots.
 
-docker-compose run --rm hpfeeds sqlite3 sqlite.db
-INSERT INTO authkeys (owner, ident, secret, pubchans, subchans) VALUES ('owner', 'main', 'verysecret', '["cowrie"]', '["cowrie"]');
-
-chmod 777 storage...
-
-
-$ sudo apt-get update
-$ sudo apt-get install software-properties-common
-$ sudo add-apt-repository ppa:certbot/certbot
-$ sudo apt-get update
-$ sudo apt-get install certbot 
-
-
-$ sudo certbot certonly --standalone -d example.com -d www.example.com
+This is still in very early testing.
