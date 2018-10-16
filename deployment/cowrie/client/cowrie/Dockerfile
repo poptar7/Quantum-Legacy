@@ -1,12 +1,10 @@
 # Who knows maybe this will work.
 FROM alpine
 
-ADD dist/ /root/dist/
-
 RUN apk -U upgrade && \
-    apk add bash git gcc libffi6 python3 python3-pip python3-setuptools \
-    python3-dev python3-venv build-essential libssl-dev libffi-dev \
-    libsnappy-dev default-libmysqlclient-dev
+    apk add bash git gcc libffi6 python py-pip python-setuptools \
+    python-dev build-base openssl-dev libffi-dev \
+    snappy-dev py-mysqldb gmp-dev mpfr-dev
 
 RUN addgroup -g 2000 cowrie && \
     adduser -S -s /bin/bash -u 2000 -D -g 2000 cowrie
@@ -17,6 +15,8 @@ RUN git clone https://github.com/cowrie/cowrie.git /opt/cowrie/ && \
     pip install --no-cache-dir -U -r requirements.txt
 
 RUN chown cowrie:cowrie -R /opt/cowrie/*
+
+ENV PATH=/opt/cowrie/bin:${PATH}
 
 USER cowrie
 WORKDIR /opt/cowrie

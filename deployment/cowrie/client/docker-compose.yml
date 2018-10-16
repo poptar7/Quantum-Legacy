@@ -2,10 +2,19 @@ version: '3'
 
 services:
   cowrie:
-    build: .
+    build: ./cowrie
     volumes:
-      - ./cowrie/etc:/opt/cowrie/etc
-      - ./cowrie/var:/opt/cowrie/var
+      - ./cowrie/etc/cowrie.cfg:/opt/cowrie/etc/cowrie.cfg
+      - cowrie-content:/opt/cowrie/var
     ports:
-      - "22:22"
-      - "23:23"
+      - "22:2222"
+      - "23:2223"
+  
+  filebeat:
+    build: ./filebeat
+    volumes:
+      - cowrie-content:/opt/cowrie/var
+      - ./filebeat/filebeat.yml:/etc/filebeat/filebeat.yml
+
+volumes:
+  cowrie-content:./cowrie/var

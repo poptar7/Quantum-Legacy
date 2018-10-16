@@ -21,8 +21,9 @@ if [ ! -d /usr/local/bin/docker-compose ]; then
 fi
 
 echo Hopefully docker-compose is now installed
-
-mkdir /opt/client
+if [ ! -d /opt/client ]; then
+    mkdir /opt/client
+fi
 cd /opt/client
 
 # Port stuff
@@ -31,27 +32,11 @@ sed -i 's/#port 22/port 22222/g
 s/port 22/port 22222/g' /etc/ssh/sshd_config
 service sshd restart
 
+chmod -R 777 cowrie
+
 docker-compose build
-docker-compose up
-
-## Begin no docker
-
-# DO debian does not have git by default
-#apt-get install git
-
-#git clone https://github.com/cowrie/cowrie.git
-#apt-get install --no-install-recommends -y libffi6 python3 python3-pip python3-setuptools build-essential libssl-dev libffi-dev python3-dev libsnappy-dev default-libmysqlclient-dev
-#cd cowrie
-#pip3 install -r requirements.txt
-#adduser --system --shell /bin/bash --group --disabled-password cowrie
-# Failed building wheel a few times yet everything installed?
-
-## End no docker
-# Toss our cowrie directory from central command into the cloned directory
-
 # Now we need to add the config for this setup
-
-# Insert more pre reqs for the docker config to work
+docker-compose up
 
 
 
