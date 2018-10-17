@@ -1,29 +1,42 @@
 #!/bin/bash
 
 # RUN as root
-# should check that
 if ! [ $(id -u) = 0 ]; then
     echo "I need root privs pleaseeee"
     exit 1
 fi
+
+# Setup the central server ip
+ip=$(ip route get 8.8.8.8 | awk 'NR==1 {print $NF}')
+echo This will use $ip for all clients connecting to the server.
+echo After the setup finishes the server will need to restart.
+
+env="CENTRAL_IP=\"$ip\""
+echo $env >> /etc/environment
+
+apt-get -y install rsync curl
+
 if [ ! -f get-docker.sh ]; then
     curl -fsSL get.docker.com -o get-docker.sh
     sh get-docker.sh
 fi
-echo Hopefully docker is actually installed.
-echo If its not then just run 'sh get-docker.sh'.
-
 # Should maybe check for a new version every so often...
 if [ ! -d /usr/local/bin/docker-compose ]; then
     curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
 fi
 
-echo Hopefully docker-compose is now installed
-
 chmod 777 storage/elasticsearch
 
-echo chmod 777 hopefully ran on the elasticsearch directory
+echo Will restart on next key press
+read input
+shutdown -r now
+
+
+
+
+
+
 
 
 

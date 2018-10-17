@@ -7,6 +7,7 @@ services:
       - ./cowrie/etc/cowrie.cfg:/opt/cowrie/etc/cowrie.cfg
       - cowrie-content:/opt/cowrie/var
     ports:
+      # We forward to privileged ports here as we know we should be root here.
       - "22:2222"
       - "23:2223"
   

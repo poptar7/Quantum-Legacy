@@ -7,3 +7,5 @@ Thats where Quantum Legacy comes in.
 Quantum Legacy centralizes all of the data that honeypots capture. It takes the deployment, management, and updating of those honeypots.
 
 This is still in very early testing.
+
+All deployment currently requires being run on Debian based systems.
