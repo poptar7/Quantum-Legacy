@@ -6,8 +6,9 @@ if ! [ $(id -u) = 0 ]; then
     exit 1
 fi
 
+#ERROR Will not remove previous failures
 # Setup the central server ip
-ip=$(ip route get 8.8.8.8 | awk 'NR==1 {print $NF}')
+ip=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
 echo This will use $ip for all clients connecting to the server.
 echo After the setup finishes the server will need to restart.
 

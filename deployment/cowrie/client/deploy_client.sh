@@ -24,17 +24,20 @@ if [ ! -d /opt/client ]; then
 fi
 cd /opt/client
 
+
+#THIS IS BORKED AS FUCK :)
 # Port stuff
 # On host change what port sshd is on and restart it
-sed -i 's/#port 22/port 22222/g
-s/port 22/port 22222/g' /etc/ssh/sshd_config
+#sed -i 's/#\s*Port 22/Port 22222/g
+#s/Port 22/Port 22222/g' /etc/ssh/sshd_config
+sed -i 's/Port 22/Port 22222/g' /etc/ssh/sshd_config
 service sshd restart
 
 chmod -R 777 cowrie
 
 docker-compose build
 # Config needs to be added at some point before starting
-docker-compose up
+docker-compose up -d
 
 
 

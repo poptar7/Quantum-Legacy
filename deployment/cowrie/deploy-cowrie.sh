@@ -8,8 +8,8 @@ fi
 # Change things that can't be set before the central server is setup.
 # This will be done by the deploy script/pre deploy per honeypot
 # as apposed to at the deploy of the server.
-sed -i "s/  hosts: [\"\"]/  hosts: [\"${CENTRAL_IP}\"]" ./cowrie/filebeat/filebeat.yml
+sed -i "s/  hosts: [\"\"]/  hosts: [\"${CENTRAL_IP}\"]/g" ./cowrie/filebeat/filebeat.yml
 
 rsync -r -e "ssh" ./client root@$1:/opt/client
 
-ssh root@"${CENTRAL_IP}" bash /opt/client/deploy_client.sh
+ssh root@$1 bash /opt/client/deploy_client.sh

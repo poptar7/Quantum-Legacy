@@ -2,7 +2,7 @@
 FROM alpine
 
 RUN apk -U upgrade && \
-    apk add bash git gcc libffi6 python py-pip python-setuptools \
+    apk add bash git gcc libffi-dev python py-pip py-setuptools \
     python-dev build-base openssl-dev libffi-dev \
     snappy-dev py-mysqldb gmp-dev mpfr-dev
 

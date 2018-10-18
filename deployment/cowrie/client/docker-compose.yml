@@ -5,7 +5,7 @@ services:
     build: ./cowrie
     volumes:
       - ./cowrie/etc/cowrie.cfg:/opt/cowrie/etc/cowrie.cfg
-      - cowrie-content:/opt/cowrie/var
+      - ./cowrie/var:/opt/cowrie/var
     ports:
       # We forward to privileged ports here as we know we should be root here.
       - "22:2222"
@@ -14,8 +14,5 @@ services:
   filebeat:
     build: ./filebeat
     volumes:
-      - cowrie-content:/opt/cowrie/var
+      - ./cowrie/var:/opt/cowrie/var
       - ./filebeat/filebeat.yml:/etc/filebeat/filebeat.yml
-
-volumes:
-  cowrie-content:./cowrie/var
