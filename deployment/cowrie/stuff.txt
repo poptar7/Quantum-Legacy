@@ -1,0 +1,22 @@
+Things that are needed.
+Have a docker installer!!!!
+EX is Cowrie
+Possibly try this without docker first :shrug:
+    1. Honeypot setup
+        a. Install docker. (Dockerize all honeypots?)
+        b. Are there any changes needed for every install (names...)
+        c. Bring in our default config (pretty much just logs?)
+        d. Now we need our specific config.
+        e. What are we changing outside of just the .conf file for the config
+        g. Just having cowrie be a volume seems like its bad practice
+            Pretty sure its still worth it though?
+            Wont work.
+        f. Run custom made docker-compose/docker files
+    2. Filebeat setup
+        a. All logs should be stored in a shared volume so this could be in its 
+            own docker, in the honeypot one, or on the host.
+        b. Config should have some magic identifiers
+    3. Extra stuff to send back to the central server
+        a. This can also be in anything that filebeats can be in.
+
+and ansible -_-?

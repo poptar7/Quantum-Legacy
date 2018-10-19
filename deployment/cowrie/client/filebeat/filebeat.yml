@@ -1,0 +1,21 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /opt/cowrie/var/log/cowrie/cowrie.json
+  json.keys_under_root: false
+  json.add_err_key: true
+
+filebeat.config.modules:
+  path: ${path.coonfig}/modules.d/*.yml
+  reload.enabled: false
+
+setup.template.settings:
+  index.number_of_shards: 3
+
+name: cowrie
+tags: ['${COWRIE_VERSION:None}'] # Another day. Grab the last git commit and get it here...
+
+output.logstash:
+  enabled: true
+  hosts: [""]

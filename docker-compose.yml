@@ -1,0 +1,69 @@
+version: '3'
+
+services:
+
+# Might need this again at some point
+#  nginx:
+#    image: nginx:latest
+#    container_name: nginx
+#    ports:
+#      - "0.0.0.0:443:443"
+#    volumes:
+#      - ./nginx/ssl:/opt/nginx/ssl
+#      - ./nginx/logs:/var/log/nginx
+#      - ./nginx/webothingo:/etc/nginx/sites-enabled/webothingo
+#    networks:
+#      - quantumlegacy
+
+  elasticsearch:
+    build:
+      context: docker-elk/elasticsearch/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - ./docker-elk/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ./storage/elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - quantumlegacy
+
+  logstash:
+    build:
+      context: docker-elk/logstash/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - ./docker-elk/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./docker-elk/logstash/pipeline:/usr/share/logstash/pipeline:ro
+    ports:
+      - "5000:5000"
+      - "5044:5044"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - quantumlegacy
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    build:
+      context: docker-elk/kibana/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - ./docker-elk/kibana/config/:/usr/share/kibana/config:ro
+    ports:
+      - "5601:5601"
+    networks:
+      - quantumlegacy
+    depends_on:
+      - elasticsearch
+
+networks:
+  quantumlegacy:
+    driver: bridge

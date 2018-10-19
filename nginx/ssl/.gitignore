@@ -1,0 +1,4 @@
+# Ignore everything in this directory cause lets be real my certs are icky.
+*
+# Except this file cause like everyone likes ignoring things right?
+!.gitignore

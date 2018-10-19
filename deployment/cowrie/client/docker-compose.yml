@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  cowrie:
+    build: ./cowrie
+    volumes:
+      - ./cowrie/etc/cowrie.cfg:/opt/cowrie/etc/cowrie.cfg
+      - ./cowrie/var:/opt/cowrie/var
+    ports:
+      # We forward to privileged ports here as we know we should be root here.
+      - "22:2222"
+      - "23:2223"
+  
+  filebeat:
+    build: ./filebeat
+    volumes:
+      - ./cowrie/var:/opt/cowrie/var
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
