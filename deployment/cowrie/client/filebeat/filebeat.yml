@@ -14,7 +14,7 @@ setup.template.settings:
   index.number_of_shards: 3
 
 name: cowrie
-tags: ['${COWRIE_VERSION:None}'] # Another day. Grap the last git commit and get it here...
+tags: ['${COWRIE_VERSION:None}'] # Another day. Grab the last git commit and get it here...
 
 output.logstash:
   enabled: true

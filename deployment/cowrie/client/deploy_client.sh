@@ -30,7 +30,7 @@ cd /opt/client
 # On host change what port sshd is on and restart it
 #sed -i 's/#\s*Port 22/Port 22222/g
 #s/Port 22/Port 22222/g' /etc/ssh/sshd_config
-sed -i 's/Port 22/Port 22222/g' /etc/ssh/sshd_config
+sed -i '/Port 22/s/.*/Port 22222/' /etc/ssh/sshd_config
 service sshd restart
 
 chmod -R 777 cowrie

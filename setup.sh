@@ -9,14 +9,23 @@ fi
 #ERROR Will not remove previous failures
 # Setup the central server ip
 ip=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
+echo
+echo ----------------------------------------
 echo This will use $ip for all clients connecting to the server.
-echo After the setup finishes the server will need to restart.
+echo The variable is "CENTRAL_IP"
+echo ----------------------------------------
+echo After the setup finishes the server will need to restart to implement this.
+echo ----------------------------------------
+echo
 
+# Check that this is not already set !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 env="CENTRAL_IP=\"$ip\""
 echo $env >> /etc/environment
 
 apt-get -y install rsync curl
 
+# If it is already installed but the file is not there it will be confused.
+# Maybe do something like which docker?
 if [ ! -f get-docker.sh ]; then
     curl -fsSL get.docker.com -o get-docker.sh
     sh get-docker.sh

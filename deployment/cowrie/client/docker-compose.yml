@@ -15,4 +15,4 @@ services:
     build: ./filebeat
     volumes:
       - ./cowrie/var:/opt/cowrie/var
-      - ./filebeat/filebeat.yml:/etc/filebeat/filebeat.yml
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
